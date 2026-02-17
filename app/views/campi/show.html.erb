@@ -1,0 +1,67 @@
+<h1 style="text-align: center; margin-top: 45px"><%= "Você está vendo o campus #{@campus.title}"%></h1>
+
+<div class="container mt-3" style="max-width: 720px;">
+  <div class="row g-3">
+
+    <div class="col-12">
+      <div class="field">
+        <label for="exampleFormControlInput1" class="form-label"><strong>Nome</strong></label>
+        <input class="form-control" type="text" value="<%= @campus.title %>" aria-label="Disabled input example" disabled readonly>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <div class="field">
+        <label for="exampleFormControlInput1" class="form-label"><strong>Endereço</strong></label>
+        <input class="form-control" type="text" value="<%= @campus.address %>" aria-label="Disabled input example" disabled readonly>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <div class="field">
+        <label for="exampleFormControlInput1" class="form-label"><strong>Número</strong></label>
+        <input class="form-control" type="text" value="<%= @campus.number %>" aria-label="Disabled input example" disabled readonly>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <div class="field">
+        <label for="exampleFormControlInput1" class="form-label"><strong>Cidade</strong></label>
+        <input class="form-control" type="text" value="<%= @campus.city %>" aria-label="Disabled input example" disabled readonly>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <div class="field">
+        <label for="exampleFormControlInput1" class="form-label"><strong>CEP</strong></label>
+        <input class="form-control" type="text" value="<%= @campus.cep %>" aria-label="Disabled input example" disabled readonly>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field">
+        <label for="exampleFormControlInput1" class="form-label"><strong>Bairro</strong></label>
+        <input class="form-control" type="text" value="<%= @campus.neighborhood %>" aria-label="Disabled input example" disabled readonly>
+      </div>
+    </div>    
+
+    <div class="col-12">
+      <div class="field">
+        <label for="exampleFormControlInput1" class="form-label"><strong>Data de Desativação</strong></label>
+        <input class="form-control" type="text" value="<%= @campus.deactivation_date ? br_date(@campus.deactivation_date) : "Ativo" %>" aria-label="Disabled input example" disabled readonly>
+      </div>
+    </div>      
+
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+
+    <span class="mt-5 mb-3">
+        <%= link_to 'Voltar', campi_path, class:"btn btn-info me-3", role:"button" %> 
+        <%= link_to 'Editar campus', edit_campus_path(@campus), class:"btn btn-warning", role:"button"%>
+    </span>
+     
+</div>
+
+

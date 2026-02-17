@@ -1,0 +1,12 @@
+<h1 style="text-align: center; margin-top: 45px">O que deseja alterar?</h1>
+
+<%= render 'form', carona: @carona %>
+
+<div class="d-flex justify-content-center">
+
+    <span class="mt-5 mb-5">
+        <%= link_to 'Voltar', caronas_path(page: params[:page]), class:"btn btn-info me-3", role:"button" %> 
+        <%= link_to 'Ver carona', carona_path(page: params[:page]), class:"btn btn-success", role:"button"%>
+    </span>
+
+</div>

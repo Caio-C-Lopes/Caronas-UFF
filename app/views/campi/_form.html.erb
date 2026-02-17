@@ -1,0 +1,63 @@
+<div class="container mt-3 pt-5 px-4 mx-auto" style="max-width: 100%; max-width: 720px;">
+  <%= form_with(model: campus, local: true) do |form| %>
+    <% if campus.errors.any? %> 
+      <div id="error_explanation">
+        <h2 style="color: red;">Não foi possível Salvar o Campus</h2>
+        <ul>
+          <% campus.errors.full_messages.each do |message| %>
+            <li style="color: red;"><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row g-3">
+      <div class="col-12" >
+        <div class="field">
+          <%= form.label :title, "Nome", class: "form-label" %>
+          <%= form.text_field :title, class: "form-control", required: true%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :address, "Endereço", class: "form-label" %>
+          <%= form.text_field :address, class: "form-control", required: true%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :number, "Número", class: "form-label" %>
+          <%= form.number_field :number, class: "form-control", min: 0, inputmode: "numeric"%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :city, "Cidade", class: "form-label" %>
+          <%= form.text_field :city, class: "form-control", required: true%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :cep, "CEP (sem pontuação)", class: "form-label" %>
+          <%= form.number_field :cep, class: "form-control", required: true, inputmode: "numeric", maxlength:8 %>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="field">
+          <%= form.label :neighborhood, "Bairro", class: "form-label" %>
+          <%= form.text_field :neighborhood, class: "form-control", required: true%>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 col-12 col-md-6 mx-auto">
+      <button class="btn btn-primary mt-5" type="submit">Finalizar</button>
+    </div>
+
+  <% end %>
+</div>

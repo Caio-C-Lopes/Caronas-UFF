@@ -1,0 +1,25 @@
+<div class="p-0">
+  <%= image_tag 'banner.png', class: "img-fluid w-100 shadow", style: "max-height: 300px; object-fit: cover;" %>
+</div>
+
+<div class="container text-center mt-5" style="padding-bottom: 50px;">
+  <div class="row justify-content-center">
+    <div class="card col-10 text-start rounded-3 p-5 ps-4 shadow d-flex flex-column justify-content-center"
+     style="background-color: #FFE8D1; color: #B23A00;">
+      <h1 class="fw-bold">Consulte e gerencie os Campi da UFF</h1>
+      <p class="mb-0 ps-1">Veja todas as nossas instalações</p>
+      <%= link_to " ", campi_path, class: "stretched-link" %>
+    </div>
+  </div>
+</div>
+
+<div class="container text-center mt-5" style="padding-bottom: 200px;">
+  <div class="row justify-content-center">
+    <div class="card col-10 text-start rounded-3 p-5 ps-4 shadow d-flex flex-column justify-content-center"
+     style="background-color: #d4d1ff; color: #8300b2;">
+      <h1 class="fw-bold">Cadastre e consulte nossas caronas</h1>
+      <p class="mb-0 ps-1">Veja todas as caronas disponíveis</p>
+      <%= link_to " ", caronas_path, class: "stretched-link" %>
+    </div>
+  </div>
+</div>

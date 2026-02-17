@@ -1,0 +1,12 @@
+<h1 style="text-align: center; margin-top: 45px">O que deseja alterar?</h1>
+ 
+<%= render 'form', campus: @campus %>
+
+<div class="d-flex justify-content-center">
+
+    <span class="mt-5 mb-3">
+        <%= link_to 'Voltar', campi_path, class:"btn btn-info me-3", role:"button" %> 
+        <%= link_to 'Ver campus', @campus, class:"btn btn-success", role:"button"%>
+    </span>
+
+</div>

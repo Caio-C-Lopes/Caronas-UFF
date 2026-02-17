@@ -1,0 +1,42 @@
+<div class="p-0">
+  <%= image_tag 'banner2.png', class: "img-fluid w-100 shadow", style: "max-height: 300px; object-fit: cover;" %>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-2 p-2">
+  <% @campi.each do |campus| %>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body rounded shadow <%= campus.deactivation_date ? 'text-bg-secondary' : 'text-bg-success' %>" >
+          <h4 class="card-title text-center"><%= campus.title %></h5>
+          <div class="d-flex justify-content-center gap-2 flex-wrap">
+            <%= link_to 'Mostrar', campus, class:"btn btn-dark", role:"button" %>
+            <%= link_to 'Editar', edit_campus_path(campus), class:"btn btn-warning fw-bold", role:"button" %>          
+            <%= link_to 'Deletar', campus_path(campus, page: params[:page]), method: :delete, data: { confirm: 'Deseja deletar?' }, class:"btn btn-danger fw-bold", role:"button" %>
+            <%= campus.deactivation_date ?
+              link_to('Ativar', activate_campus_path(campus, page: params[:page]), class:"btn btn-success fw-bold", role:"button", method: :patch, data: { confirm: 'Deseja ativar?' }) 
+              :
+              link_to('Desativar', deactivate_campus_path(campus, page: params[:page]), class:"btn btn-secondary fw-bold", role:"button", method: :patch, data: { confirm: 'Deseja desativar?' })
+            %>
+          </div>
+        </div>
+      </div>      
+    </div>
+    <% end %>
+</div>
+
+<div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center mb-3 mt-4">
+  
+  <div class="order-2 order-md-1 mt-3 mt-md-0">
+    <%= link_to 'Novo campus', new_campus_path, class: "btn btn-primary mb-3 ms-2" %>
+  </div>
+
+  <div class="order-1 order-md-2 mx-md-auto">
+    <%= paginate @campi %>
+  </div>
+  
+  <div class="d-none d-md-block order-md-3" style="visibility:hidden;">
+    <%= link_to 'Novo campus', new_campus_path, class: "btn btn-primary mb-3 ms-2", role: "button", disabled: true %>
+  </div>
+</div>
+
+<br>

@@ -1,0 +1,88 @@
+<div class="container mt-3 pt-5 px-4 mx-auto" style="max-width: 100%; max-width: 720px;">
+  <%= form_with(model: carona, local: true) do |form| %>
+
+    <% if carona.errors.any? %> 
+      <div id="error_explanation">
+        <h2 style="color: red;">Não foi possível Salvar a Carona</h2>
+        <ul>
+          <% carona.errors.full_messages.each do |message| %>
+            <li style="color:red;">
+              <%= message.gsub('Carona paradas parada title', 'Nome da Parada') %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+ 
+    <div class="row g-3">
+      <div class="col-12" >
+        <div class="field">
+          <%= form.label :driver_name, "Nome do Motorista", class: "form-label" %>
+          <%= form.text_field :driver_name, class: "form-control", required: true%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :departure, "Partida", class: "form-label" %>
+          <%= form.text_field :departure, class: "form-control", required: true%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :destination, "Destino", class: "form-label" %>
+          <%= form.text_field :destination, class: "form-control", required: true%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :date_time, "Data e Hora da Carona", class: "form-label" %>
+          <%= form.text_field :date_time, class: "form-control datetimepicker", required: true%>
+        </div>
+      </div>
+     
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :passengers_number, "Número de Passageiros", class: "form-label" %>
+          <%= form.number_field :passengers_number, class: "form-control", required: true, min: 0, inputmode: "numeric"%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :cost, "Custo", class: "form-label" %>
+          <%= form.number_field :cost, class: "form-control", step: 0.01, required: true%>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <%= form.label :obs, "Observações", class: "form-label" %>
+          <%= form.text_area :obs, class: "form-control" %>
+        </div>
+      </div>
+
+      <h3>Paradas da Carona</h3>
+      <div id="carona_paradas">
+        <%= form.fields_for :carona_paradas do |carona_parada| %>
+          <%= render 'carona_parada_fields', f: carona_parada %>
+        <% end %>
+      </div>
+
+      <div class="links">
+        <%= link_to_add_association "Adicionar Parada", form, :carona_paradas,
+            wrap_object: ->(cp) { cp.build_parada; cp },
+            class: "btn btn-outline-primary" %>
+      </div>
+
+    </div>
+
+    <div class="d-grid gap-2 col-12 col-md-6 mx-auto">
+      <button class="btn btn-primary mt-5" type="submit">Finalizar</button>
+    </div>
+
+  <% end %>
+</div>
+

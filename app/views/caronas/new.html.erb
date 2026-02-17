@@ -1,0 +1,7 @@
+<h1 style="text-align: center; margin-top: 45px">Que tipo de Carona deseja cadastrar?</h1>
+
+<%= render 'form', carona: @carona %>
+
+<div class="d-flex justify-content-center mb-5">
+    <%= link_to 'Voltar', caronas_path(page: params[:page]), class:"btn btn-info mt-5", role:"button" %>
+</div> 

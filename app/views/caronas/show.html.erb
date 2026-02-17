@@ -1,0 +1,75 @@
+<h1 style="text-align: center; margin-top: 45px"><%= "Você está vendo a Carona de #{@carona.driver_name}"%></h1>
+
+
+<div class="container mt-3" style="max-width: 720px;">
+    <div class="row g-3">
+      <div class="col-12" >
+        <div class="field">
+          <label for="exampleFormControlInput1" class="form-label"><strong>Nome do Motorista</strong></label>
+          <input class="form-control" type="text" value="<%= @carona.driver_name %>" aria-label="Disabled input example" disabled readonly>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <label for="exampleFormControlInput1" class="form-label"><strong>Partida</strong></label>
+          <input class="form-control" type="text" value="<%= @carona.departure %>" aria-label="Disabled input example" disabled readonly>          
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <label for="exampleFormControlInput1" class="form-label"><strong>Destino</strong></label>
+          <input class="form-control" type="text" value="<%= @carona.destination %>" aria-label="Disabled input example" disabled readonly>          
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <label for="exampleFormControlInput1" class="form-label"><strong>Data e Hora</strong></label>
+          <input class="form-control" type="text" value="<%= br_date_time(@carona.date_time, 'full') %>" aria-label="Disabled input example" disabled readonly>          
+        </div>
+      </div>      
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <label for="exampleFormControlInput1" class="form-label"><strong>Número de Passageiros</strong></label>
+          <input class="form-control" type="text" value="<%= @carona.passengers_number %>" aria-label="Disabled input example" disabled readonly>          
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <label for="exampleFormControlInput1" class="form-label"><strong>Custo</strong></label>
+          <input class="form-control" type="text" value="<%= @carona.cost %>" aria-label="Disabled input example" disabled readonly>          
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="field">
+          <label for="exampleFormControlInput1" class="form-label"><strong>Observação</strong></label>
+          <input class="form-control" type="text" value="<%= @carona.obs %>" aria-label="Disabled input example" disabled readonly>          
+        </div>
+      </div>
+
+      <div id="carona_paradas">        
+        <% @carona.paradas.each do |parada| %>
+          <div class="parada">
+            <label for="exampleFormControlInput1" class="form-label"><strong>Parada</strong></label>
+            <input class="form-control mb-3" type="text" value="<%= parada.title %>" aria-label="Disabled input example" disabled readonly>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+</div>
+ 
+
+<div class="d-flex justify-content-center">
+
+    <span class="mt-5 mb-3">
+        <%= link_to 'Voltar', caronas_path(page: params[:page]), class:"btn btn-info me-3", role:"button" %> 
+        <%= link_to 'Editar Carona', edit_carona_path(@carona, page: params[:page]), class:"btn btn-warning", role:"button" %>
+    </span>
+     
+</div>

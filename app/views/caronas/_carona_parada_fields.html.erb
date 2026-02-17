@@ -1,0 +1,12 @@
+<div class="nested-fields col-12">
+  <%= f.fields_for :parada do |p| %>
+    <div class="field">
+      <%= p.label :title, "Nome da Parada", class: "form-label" %>
+      <%= p.text_field :title , class: "form-control "%>
+    </div>
+  <% end %>
+ 
+
+<%= link_to_remove_association "Remover Parada", f , class: "btn btn-outline-danger mt-3 mb-3" %>
+ 
+</div>
