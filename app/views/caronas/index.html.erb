@@ -2,16 +2,21 @@
   <%= image_tag 'banner_carona.png', class: "img-fluid w-100 shadow", style: "max-height: 300px; object-fit: cover;" %>
 </div>
 
- <% current_page = @caronas.current_page %>
-
-<div class="my-3 col-11 col-md-8 col-sm-10 col-xl-5 ms-3">
+<% current_page = @caronas.current_page %>
+ 
+<div class="my-3 col-11 ms-3">
   <%= search_form_for @q do |f| %>
-    <div class="input-group">
-      <%= f.search_field :departure_cont, placeholder: "Partida", class: "form-control" %>
-      <%= f.search_field :destination_cont, placeholder: "Destino", class: "form-control ms-2" %>
-      <%= f.submit "Buscar", class: "btn btn-primary ms-2" %>
+    <div class="row align-items-end g-2">
+
+      <%= render 'search_campus_index', f: f, role: 'departure', label_text: 'Partida' %>
+      <%= render 'search_campus_index', f: f, role: 'destination', label_text: 'Destino' %>
+
+      <div class="col-12 col-md-2 d-grid">
+        <%= f.submit "Buscar", class: "btn btn-primary" %>
+      </div>
+
     </div>
-  <% end %>  
+  <% end %>
 </div>
 
 <div class="order-2 order-md-1 mt-3 mt-md-0">
@@ -33,7 +38,7 @@
             <div>
               <h5 class="mb-0">
 
-                <% if carona.paradas.exists? %>
+                <% if carona.carona_paradas.any? %>
                   <strong>Com paradas</strong>
 
                 <% else %>

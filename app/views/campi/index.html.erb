@@ -2,6 +2,15 @@
   <%= image_tag 'banner2.png', class: "img-fluid w-100 shadow", style: "max-height: 300px; object-fit: cover;" %>
 </div>
 
+<div class="row justify-content-center my-4">
+  <div class="col-md-6">
+    <select id="campus-search"
+            class="form-control"
+            data-url="<%= search_campi_path %>">
+    </select>
+  </div>
+</div>
+
 <div class="row row-cols-1 row-cols-md-3 g-2 p-2">
   <% @campi.each do |campus| %>
     <div class="col">

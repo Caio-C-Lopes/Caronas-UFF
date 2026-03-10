@@ -4,8 +4,8 @@ class CampiController < ApplicationController
 
   # GET /campi or /campi.json
   def index
-    @campi = Campus.page(params[:page])
-  end
+    @campi = Campus.finder(params[:q]).page(params[:page])
+  end 
 
   # GET /campi/1 or /campi/1.json
   def show
@@ -18,6 +18,10 @@ class CampiController < ApplicationController
 
   # GET /campi/1/edit
   def edit
+  end
+  
+  def search
+    render json: Campus.finder(params[:q])
   end
 
   def deactivate
@@ -71,7 +75,7 @@ class CampiController < ApplicationController
     redirect_page = RedirectPageService.new(campi, current_page)
     page_direct = redirect_page.call
 
-    if @campus.can_delete
+    if @campus.can_delete?
       @campus.destroy
       notice = "Campus #{@campus.title} foi excluído."
     else

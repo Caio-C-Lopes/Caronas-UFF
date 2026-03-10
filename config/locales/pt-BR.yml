@@ -5,8 +5,6 @@ pt-BR:
       carona: "Carona"
       carona_parada: "Parada da Carona"
       parada: "Parada"
-      dia_caronas: "Dias da semana"
-
     attributes:
       campus:
         title: "Nome do Campus"
@@ -27,7 +25,6 @@ pt-BR:
         parada: "Parada"
       parada:
         title: "Nome da Parada"
-
     errors:
       models:
         campus:
@@ -38,6 +35,9 @@ pt-BR:
               taken: "já está cadastrado"
         carona:
           attributes:
+            base:
+              no_valid_campus: "Pelo menos partida ou destino precisa ser um campus válido"
+              campus_deactivated: "O campus %{title} está desativado"
             driver_name:
               blank: "não pode ficar em branco"
             departure:
@@ -51,13 +51,25 @@ pt-BR:
               not_a_number: "precisa ser um número válido"
             hour:
               blank: "não pode ficar em branco"
+        carona_parada:
+          attributes:
+            parada:
+              required: "não pode ficar em branco"
+              blank: "não pode ficar em branco"
         parada:
           attributes:
             title:
               blank: "não pode ficar em branco"
-
-      messages:
-        taken: "já está em uso"
-        blank: "não pode ficar em branco"
-        not_a_number: "não é um número válido"
-        greater_than_or_equal_to: "deve ser um número válido!"
+        campus_carona:
+          attributes:
+            base:
+              campus_deactivated: "O campus %{title} está desativado"
+            campus:
+              blank: "não pode ficar em branco"
+            carona:
+              blank: "não pode ficar em branco"
+  messages:
+    taken: "já está em uso"
+    blank: "não pode ficar em branco"
+    not_a_number: "não é um número válido"
+    greater_than_or_equal_to: "deve ser um número válido!"

@@ -7,7 +7,7 @@
         <ul>
           <% carona.errors.full_messages.each do |message| %>
             <li style="color:red;">
-              <%= message.gsub('Carona paradas parada title', 'Nome da Parada') %>
+              <%= message.gsub('Carona paradas parada', 'Parada') %>
             </li>
           <% end %>
         </ul>
@@ -22,24 +22,22 @@
         </div>
       </div>
 
-      <div class="col-12 col-sm-6">
-        <div class="field">
-          <%= form.label :departure, "Partida", class: "form-label" %>
-          <%= form.text_field :departure, class: "form-control", required: true%>
-        </div>
-      </div>
+      <%= render 'search_campus_form', form: form,
+      role: 'departure',
+      label_text: 'Partida',
+      current_value: carona.departure,
+      is_campus: carona.departure_is_campus? %>
 
-      <div class="col-12 col-sm-6">
-        <div class="field">
-          <%= form.label :destination, "Destino", class: "form-label" %>
-          <%= form.text_field :destination, class: "form-control", required: true%>
-        </div>
-      </div>
+      <%= render 'search_campus_form', form: form,
+      role: 'destination',
+      label_text: 'Destino',
+      current_value: carona.destination,
+      is_campus: carona.destination_is_campus? %>
 
       <div class="col-12 col-sm-6">
         <div class="field">
           <%= form.label :date_time, "Data e Hora da Carona", class: "form-label" %>
-          <%= form.text_field :date_time, class: "form-control datetimepicker", required: true%>
+          <%= form.text_field :date_time, class: "form-control datetimepicker", required: true, value: carona.date_time&.strftime("%Y-%m-%d %H:%M")%>
         </div>
       </div>
      
@@ -74,6 +72,7 @@
       <div class="links">
         <%= link_to_add_association "Adicionar Parada", form, :carona_paradas,
             wrap_object: ->(cp) { cp.build_parada; cp },
+            data: { association_insertion_node: '#carona_paradas', association_insertion_method: 'append'},            
             class: "btn btn-outline-primary" %>
       </div>
 

@@ -1,0 +1,30 @@
+<div class="col-12 col-sm-6">
+  <div class="field">
+    <%= label_tag role, label_text, class: "form-label" %>
+
+    <div class="form-check mb-2">
+      <input type="checkbox" class="form-check-input campus-toggle"
+             id="<%= role %>_is_campus" data-target="<%= role %>"
+             <%= 'checked' if is_campus %>>
+      <label class="form-check-label" for="<%= role %>_is_campus">É um campus?</label>
+    </div>
+
+    <div class="<%= role %>-text-wrapper" <%= 'style="display:none;"' if is_campus %>>
+      <%= form.text_field role,
+            class: "form-control",
+            placeholder: "Digite o endereço",
+            value: is_campus ? '' : current_value,
+            disabled: is_campus %>
+    </div>
+
+    <div class="<%= role %>-select-wrapper" style="<%= is_campus ? '' : 'display:none;' %>">
+      <select name="carona[<%= role %>]"
+              class="form-control <%= role %>-select"
+              data-url="<%= search_campi_path(format: :json) %>"
+              data-selected="<%= current_value if is_campus %>"
+              <%= 'disabled' unless is_campus %>>
+      </select>
+    </div>
+  </div>
+  
+</div>

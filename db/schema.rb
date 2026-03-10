@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_02_06_201313) do
+ActiveRecord::Schema.define(version: 2026_02_19_190351) do
 
   create_table "campi", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2026_02_06_201313) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["title"], name: "index_campi_on_title", unique: true
+  end
+
+  create_table "campus_caronas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "carona_id", null: false
+    t.bigint "campus_id", null: false
+    t.string "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campus_id"], name: "index_campus_caronas_on_campus_id"
+    t.index ["carona_id"], name: "index_campus_caronas_on_carona_id"
   end
 
   create_table "carona_paradas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -53,6 +63,8 @@ ActiveRecord::Schema.define(version: 2026_02_06_201313) do
     t.index ["title"], name: "index_paradas_on_title", unique: true
   end
 
+  add_foreign_key "campus_caronas", "campi"
+  add_foreign_key "campus_caronas", "caronas"
   add_foreign_key "carona_paradas", "caronas"
   add_foreign_key "carona_paradas", "paradas"
 end

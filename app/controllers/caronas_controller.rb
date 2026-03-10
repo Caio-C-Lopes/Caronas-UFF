@@ -4,7 +4,11 @@ class CaronasController < ApplicationController
   # GET /caronas or /caronas.json
   def index
     @q = Carona.ransack(params[:q])
-    @caronas = @q.result(distinct: true).order(date_time: :desc).page(params[:page]).per(6)
+    @caronas = @q.result(distinct: true)
+                      .includes(:carona_paradas)
+                      .order(date_time: :desc)
+                      .page(params[:page])
+                      .per(6)
   end
  
   # GET /caronas/1 or /caronas/1.json
@@ -23,7 +27,8 @@ class CaronasController < ApplicationController
   # POST /caronas or /caronas.json
   def create
     @carona = Carona.new(carona_params)
-
+    CreateCampusCaronasService.new(@carona).call
+    
     respond_to do |format|
       if @carona.save
         format.html { redirect_to @carona, notice: "Carona criada com sucesso." }
@@ -74,7 +79,7 @@ class CaronasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_carona
-      @carona = Carona.find(params[:id])
+      @carona = Carona.includes(carona_paradas: :parada).find(params[:id])      
     end
 
     # Only allow a list of trusted parameters through.

@@ -5,6 +5,11 @@ Rails.application.routes.draw do
       patch :activate
       patch :deactivate
     end
+
+    collection do
+      get :search
+    end
+
   end
   get 'welcome/index'
   root to: 'welcome#index'

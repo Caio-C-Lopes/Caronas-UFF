@@ -1,0 +1,21 @@
+<div class="col-12 col-md-3">
+
+  <div class="form-check mb-1">
+    <input type="checkbox" class="form-check-input campus-toggle"
+           id="<%= role %>_is_campus" data-target="<%= role %>">
+    <label class="form-check-label" for="<%= role %>_is_campus">É campus?</label>
+  </div>
+
+  <div class="<%= role %>-text-wrapper">
+    <%= f.search_field :"#{role}_cont", placeholder: "Digite #{label_text}", class: "form-control" %>
+  </div>
+
+  <div class="<%= role %>-select-wrapper" style="display:none;">
+    <select name="q[<%= role %>_cont]"
+            class="form-control <%= role %>-select"
+            data-url="<%= search_campi_path(format: :json) %>"
+            disabled>
+    </select>
+  </div>
+
+</div>
